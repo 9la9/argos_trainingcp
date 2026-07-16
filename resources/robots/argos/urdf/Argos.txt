@@ -1,0 +1,935 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com)
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="Argos_2_0114">
+  <link name="base">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="6.240" />
+      <inertia ixx="0.02922043" ixy="0" ixz="0" iyy="0.12807702" iyz="0" izz="0.12894751" />
+    </inertial>
+
+    <!-- 视觉模型 - 使用STL网格 -->
+    <visual>
+      <origin xyz="0.03 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../meshes/TORSO.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+
+    <!-- 碰撞模型 - 使用两个盒子几何体 -->
+    <collision>
+      <origin xyz="0 0 0.01" rpy="0 0 0"/>
+      <geometry>
+        <!-- 躯干主要部分的碰撞体 -->
+        <box size="0.54 0.16 0.15"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="-0.01 0 0.01" rpy="0 0 0"/>
+      <geometry>
+        <!-- 躯干扩展部分的碰撞体 -->
+        <box size="0.2 0.2 0.15"/>
+      </geometry>
+    </collision>
+
+  </link>
+  <link
+    name="FL_hip">
+    <inertial>
+      <origin
+        xyz="-0.00858663 -0.00606626 0.00210488"
+        rpy="0 0 0" />
+      <mass
+        value="0.544" />
+      <inertia
+        ixx="0.00035868"
+        ixy="0.00"
+        ixz="0.00"
+        iyy="0.00044821"
+        iyz="0.00"
+        izz="0.00039697" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/FL_HIP.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0.05 0" rpy="1.57079632 0 0"/>
+      <geometry>
+        <!-- 髋部圆柱体碰撞体 -->
+        <cylinder length="0.01" radius="0.04"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FL_hip_joint"
+    type="revolute">
+    <origin
+      xyz="0.1744 0.054531 -0.015053"
+      rpy="0 0 0" />
+    <parent
+      link="base" />
+    <child
+      link="FL_hip" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.4886" upper="0.4886" effort="21" velocity="22.2" />
+
+  </joint>
+  <link
+    name="FL_thigh">
+    <inertial>
+      <origin
+        xyz="-0.00433784 -0.02981623 -0.03081075"
+        rpy="0 0 0" />
+      <mass
+        value="1.181" />
+      <inertia
+        ixx="0.00509108"
+        ixy="0"
+        ixz="0"
+        iyy="0.00508347"
+        iyz="0"
+        izz="0.00111448" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/FL_THIGH.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.012 0 -0.08" rpy="0 0.2 0"/>
+      <geometry>
+        <!-- 大腿盒子碰撞体 -->
+        <box size="0.05 0.04 0.21"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FL_thigh_joint"
+    type="revolute">
+    <origin
+      xyz="0 0.09134525 0"
+      rpy="0 0 0" />
+    <parent
+      link="FL_hip" />
+    <child
+      link="FL_thigh" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.3525" upper="2.789" effort="21" velocity="22.2" />
+  </joint>
+  <link
+    name="FL_shank">
+    <inertial>
+      <origin
+        xyz="0.00615557 0.00120286 -0.09474520"
+        rpy="0 0 0" />
+      <mass
+        value="0.234" />
+      <inertia
+        ixx="0.00162293"
+        ixy="0"
+        ixz="0"
+        iyy="0.00164910"
+        iyz="0"
+        izz="0.00005159" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/FL_SHANK.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+        <!-- 碰撞模型 - 三个圆柱体 -->
+    <collision>
+        <origin xyz="0.006 0 -0.05" rpy="0 -0.2 0"/>
+        <geometry>
+            <cylinder length="0.12" radius="0.015"/>
+        </geometry>
+    </collision>
+    <collision>
+        <origin xyz="0.018 0 -0.14" rpy="0 0 0"/>
+        <geometry>
+            <cylinder length="0.03" radius="0.014"/>
+        </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.008 0 -0.18" rpy="0 0.26 0"/>
+      <geometry>
+        <!-- 小腿下部圆柱体碰撞体 -->
+        <cylinder length="0.05" radius="0.016"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FL_calf_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.2"
+      rpy="0 0 0" />
+    <parent
+      link="FL_thigh" />
+    <child
+      link="FL_shank" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2.6929" upper="-0.6335" effort="32" velocity="14.5" />
+
+  </joint>
+  <link
+    name="FL_foot">
+    <inertial>
+      <mass value="0.02"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/FL_FOOT.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.309803921568627 0.329411764705882 0.349019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.008" />
+      <geometry>
+        <!-- 脚部球体碰撞体(半径0.022) -->
+        <sphere radius="0.022"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FL_Ankle"
+    type="fixed" dont_collapse="true">
+    <origin
+      xyz="0 0 -0.21"
+      rpy="0 0 0" />
+    <parent
+      link="FL_shank" />
+    <child
+      link="FL_foot" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="FR_hip">
+    <inertial>
+      <origin
+        xyz="-0.00858663 0.00606626 0.00210488"
+        rpy="0 0 0" />
+      <mass
+        value="0.544" />
+      <inertia
+        ixx="0.00035868"
+        ixy="0.00"
+        ixz="0.00"
+        iyy="0.00044821"
+        iyz="0.00"
+        izz="0.00039697" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/FR_HIP.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 -0.05 0" rpy="1.57079632 0 0"/>
+      <geometry>
+        <cylinder length="0.01" radius="0.04"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FR_hip_joint"
+    type="revolute">
+    <origin
+      xyz="0.1744 -0.054531 -0.015053"
+      rpy="0 0 0" />
+    <parent
+      link="base" />
+    <child
+      link="FR_hip" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.4886" upper="0.4886" effort="21" velocity="22.2" />
+
+  </joint>
+  <link
+    name="FR_thigh">
+    <inertial>
+      <origin
+        xyz="-0.00433784 0.02981623 -0.03081075"
+        rpy="0 0 0" />
+      <mass
+        value="1.181" />
+      <inertia
+        ixx="0.00509108"
+        ixy="0"
+        ixz="0"
+        iyy="0.00508347"
+        iyz="0"
+        izz="0.00111448" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/FR_THIGH.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.012 0 -0.08" rpy="0 0.2 0"/>
+      <geometry>
+        <!-- 大腿盒子碰撞体 -->
+        <box size="0.05 0.04 0.21"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FR_thigh_joint"
+    type="revolute">
+    <origin
+      xyz="0 -0.09134525 0"
+      rpy="0 0 0" />
+    <parent
+      link="FR_hip" />
+    <child
+      link="FR_thigh" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.3525" upper="2.789" effort="21" velocity="22.2" />
+
+  </joint>
+  <link
+    name="FR_shank">
+    <inertial>
+      <origin
+        xyz="0.00615557 -0.00120286 -0.09474520"
+        rpy="0 0 0" />
+      <mass
+        value="0.234" />
+      <inertia
+        ixx="0.00162293"
+        ixy="0"
+        ixz="0"
+        iyy="0.00164910"
+        iyz="0"
+        izz="0.00005159" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/FR_SHANK.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+          <!-- 碰撞模型 - 三个圆柱体 -->
+    <collision>
+        <origin xyz="0.006 0 -0.05" rpy="0 -0.2 0"/>
+        <geometry>
+            <cylinder length="0.12" radius="0.015"/>
+        </geometry>
+    </collision>
+    <collision>
+        <origin xyz="0.018 0 -0.14" rpy="0 0 0"/>
+        <geometry>
+            <cylinder length="0.03" radius="0.014"/>
+        </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.008 0 -0.18" rpy="0 0.26 0"/>
+      <geometry>
+        <!-- 小腿下部圆柱体碰撞体 -->
+        <cylinder length="0.05" radius="0.016"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FR_calf_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.2"
+      rpy="0 0 0" />
+    <parent
+      link="FR_thigh" />
+    <child
+      link="FR_shank" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2.6929" upper="-0.6335" effort="32" velocity="14.5" />
+
+  </joint>
+  <link
+    name="FR_foot">
+    <inertial>
+      <mass value="0.02"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/FR_FOOT.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.309803921568627 0.329411764705882 0.349019607843137 1" />
+      </material>
+    </visual>
+     <collision>
+      <origin xyz="0 0 -0.008" />
+      <geometry>
+        <sphere radius="0.022"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FR_Ankle"
+    type="fixed" dont_collapse="true">
+    <origin
+      xyz="0 0 -0.21"
+      rpy="0 0 0" />
+    <parent
+      link="FR_shank" />
+    <child
+      link="FR_foot" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="HL_hip">
+    <inertial>
+      <origin
+        xyz="0.00858663 -0.00606626 0.00210488"
+        rpy="0 0 0" />
+      <mass
+        value="0.544" />
+      <inertia
+        ixx="0.00035868"
+        ixy="0.00"
+        ixz="0.00"
+        iyy="0.00044821"
+        iyz="0.00"
+        izz="0.00039697" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HL_HIP.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0.05 0" rpy="1.57079632 0 0"/>
+      <geometry>
+        <cylinder length="0.01" radius="0.04"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RL_hip_joint"
+    type="revolute">
+    <origin
+      xyz="-0.1744 0.054531 -0.015053"
+      rpy="0 0 0" />
+    <parent
+      link="base" />
+    <child
+      link="HL_hip" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.4886" upper="0.4886" effort="21" velocity="22.2" />
+
+  </joint>
+  <link
+    name="HL_thigh">
+    <inertial>
+      <origin
+        xyz="-0.00433784 -0.02981623 -0.03081075"
+        rpy="0 0 0" />
+      <mass
+        value="1.181" />
+      <inertia
+        ixx="0.00509108"
+        ixy="0"
+        ixz="0"
+        iyy="0.00508347"
+        iyz="0"
+        izz="0.00111448" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HL_THIGH.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.012 0 -0.08" rpy="0 0.2 0"/>
+      <geometry>
+        <!-- 大腿盒子碰撞体 -->
+        <box size="0.05 0.04 0.21"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RL_thigh_joint"
+    type="revolute">
+    <origin
+      xyz="0 0.09134525 0"
+      rpy="0 0 0" />
+    <parent
+      link="HL_hip" />
+    <child
+      link="HL_thigh" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.3525" upper="2.789" effort="21" velocity="22.2" />
+
+  </joint>
+  <link
+    name="HL_shank">
+    <inertial>
+      <origin
+        xyz="0.00615557 0.00120286 -0.09474520"
+        rpy="0 0 0" />
+      <mass
+        value="0.234" />
+      <inertia
+        ixx="0.00162293"
+        ixy="0"
+        ixz="0"
+        iyy="0.00164910"
+        iyz="0"
+        izz="0.00005159" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HL_SHANK.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+        <!-- 碰撞模型 - 三个圆柱体 -->
+        <collision>
+        <origin xyz="0.006 0 -0.05" rpy="0 -0.2 0"/>
+        <geometry>
+            <cylinder length="0.12" radius="0.015"/>
+        </geometry>
+    </collision>
+    <collision>
+        <origin xyz="0.018 0 -0.14" rpy="0 0 0"/>
+        <geometry>
+            <cylinder length="0.03" radius="0.014"/>
+        </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.008 0 -0.18" rpy="0 0.26 0"/>
+      <geometry>
+        <!-- 小腿下部圆柱体碰撞体 -->
+        <cylinder length="0.05" radius="0.016"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RL_calf_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.2"
+      rpy="0 0 0" />
+    <parent
+      link="HL_thigh" />
+    <child
+      link="HL_shank" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2.6929" upper="-0.6335" effort="32" velocity="14.5" />
+
+  </joint>
+  <link
+    name="HL_foot">
+    <inertial>
+      <mass value="0.02"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HL_FOOT.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.309803921568627 0.329411764705882 0.349019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.008" />
+      <geometry>
+        <!-- 脚部球体碰撞体(半径0.022) -->
+        <sphere radius="0.022"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="HL_Ankle"
+    type="fixed" dont_collapse="true">
+    <origin
+      xyz="0 0 -0.21"
+      rpy="0 0 0" />
+    <parent
+      link="HL_shank" />
+    <child
+      link="HL_foot" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="HR_hip">
+    <inertial>
+      <origin
+        xyz="0.00858663 0.00606626 0.00210488"
+        rpy="0 0 0" />
+      <mass
+        value="0.544" />
+      <inertia
+        ixx="0.00035868"
+        ixy="0.00"
+        ixz="0.00"
+        iyy="0.00044821"
+        iyz="0.00"
+        izz="0.00039697" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HR_HIP.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 -0.05 0" rpy="1.57079632 0 0"/>
+      <geometry>
+        <cylinder length="0.01" radius="0.04"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RR_hip_joint"
+    type="revolute">
+    <origin
+      xyz="-0.1744 -0.054531 -0.015053"
+      rpy="0 0 0" />
+    <parent
+      link="base" />
+    <child
+      link="HR_hip" />
+    <axis xyz="1 0 0" />
+    <limit lower="-0.4886" upper="0.4886" effort="21" velocity="22.2" />
+
+  </joint>
+  <link
+    name="HR_thigh">
+    <inertial>
+      <origin
+        xyz="-0.00433784 0.02981623 -0.03081075"
+        rpy="0 0 0" />
+      <mass
+        value="1.181" />
+      <inertia
+        ixx="0.00509108"
+        ixy="0"
+        ixz="0"
+        iyy="0.00508347"
+        iyz="0"
+        izz="0.00111448" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HR_THIGH.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.012 0 -0.08" rpy="0 0.2 0"/>
+      <geometry>
+        <!-- 大腿盒子碰撞体 -->
+        <box size="0.05 0.04 0.21"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RR_thigh_joint"
+    type="revolute">
+    <origin
+      xyz="0 -0.09134525 0"
+      rpy="0 0 0" />
+    <parent
+      link="HR_hip" />
+    <child
+      link="HR_thigh" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.3525" upper="2.789" effort="21" velocity="22.2" />
+
+  </joint>
+  <link
+    name="HR_shank">
+    <inertial>
+      <origin
+        xyz="0.00615557 -0.00120286 -0.09474520"
+        rpy="0 0 0" />
+      <mass
+        value="0.234" />
+      <inertia
+        ixx="0.00162293"
+        ixy="0"
+        ixz="0"
+        iyy="0.00164910"
+        iyz="0"
+        izz="0.00005159" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HR_SHANK.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+         <!-- 碰撞模型 - 三个圆柱体 -->
+        <collision>
+        <origin xyz="0.006 0 -0.05" rpy="0 -0.2 0"/>
+        <geometry>
+            <cylinder length="0.12" radius="0.015"/>
+        </geometry>
+    </collision>
+    <collision>
+        <origin xyz="0.018 0 -0.14" rpy="0 0 0"/>
+        <geometry>
+            <cylinder length="0.03" radius="0.014"/>
+        </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.008 0 -0.18" rpy="0 0.26 0"/>
+      <geometry>
+        <!-- 小腿下部圆柱体碰撞体 -->
+        <cylinder length="0.05" radius="0.016"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RR_calf_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.2"
+      rpy="0 0 0" />
+    <parent
+      link="HR_thigh" />
+    <child
+      link="HR_shank" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2.6929" upper="-0.6335" effort="32" velocity="14.5" />
+
+  </joint>
+  <link
+    name="HR_foot">
+    <inertial>
+      <mass value="0.02"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/HR_FOOT.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.309803921568627 0.329411764705882 0.349019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.008" />
+      <geometry>
+        <!-- 脚部球体碰撞体(半径0.022) -->
+        <sphere radius="0.022"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="HR_Ankle"
+    type="fixed" dont_collapse="true">
+    <origin
+      xyz="0 0 -0.21"
+      rpy="0 0 0" />
+    <parent
+      link="HR_shank" />
+    <child
+      link="HR_foot" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <!-- ============================================= -->
+  <!--                   头部                        -->
+  <!-- =============================================-->
+  <link name="HEAD">
+    <inertial>
+      <origin xyz="0.02429563 -0.00102927 0.04350887" rpy="0 0 0" />
+      <mass value="0.33600000" />
+      <inertia ixx="0.00055557" ixy="0" ixz="0" iyy="0.00078690" iyz="0" izz="0.00071445" />
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../meshes/HEAD.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+
+    <!-- 头部碰撞模型 - 使用盒子几何体 -->
+    <collision>
+      <origin xyz="0.05 0 0.03" rpy="0 0 0" />
+      <geometry>
+        <!-- 头部盒子碰撞体 -->
+        <box size="0.18 0.1 0.11"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- 头部关节 -->
+  <joint name="HEAD_joint" type="fixed">
+    <origin xyz="0.24949 -0.00025653 0.12248" rpy="0 0 0" />
+    <parent link="base" />
+    <child link="HEAD" />
+    <axis xyz="-0.47569 0 -0.87961" />
+    <limit lower="0" upper="0" effort="0" velocity="0" />
+  </joint>
+</robot>
